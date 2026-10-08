@@ -45,6 +45,6 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/nymphora2026/musetalk-1.5:0a89dec45a0192b824e3cf4daf96c239440c5ed8
-            ghcr.io/nymphora2026/musetalk-1.5:v1.5
+            ghcr.io/nymphora2026/musetalk-1.5:v1.5.1
+            ghcr.io/nymphora2026/musetalk-1.5:${{ github.sha }}
           provenance: false

@@ -27,7 +27,8 @@ RunPod Serverless is the first host adapter (`MUSETALK_GPU_HOST=runpod`). A gene
 | Weights repo | `TMElyralab/MuseTalk` @ `2bcb936e2fddb4d86db4c62fd45b387d0c061571` |
 | VAE | `stabilityai/sd-vae-ft-mse` @ `31f26fdeee1355a5c34592e401dd41e45d25a493` |
 | Python | 3.10 |
-| PyTorch | 2.2.2 + CUDA 12.1 |
+| PyTorch | 2.1.2 + torchvision 0.16.2 + CUDA 12.1 |
+| mmcv | 2.1.0 |
 | ffmpeg | distro 6.x in the CUDA 22.04 image |
 
 See `pins.json`.
@@ -46,7 +47,7 @@ See `pins.json`.
 | Layer | Baked into image? | Size |
 |---|---|---|
 | CUDA 12.1 runtime + Python + ffmpeg | yes | ~3–4 GB |
-| PyTorch 2.2.2 cu121 + torchvision | yes | ~3–4 GB |
+| PyTorch 2.1.2 cu121 + torchvision 0.16.2 | yes | ~3–4 GB |
 | mmcv / mmdet / mmpose | yes | ~1–2 GB |
 | MuseTalk code @ pinned SHA | yes | <50 MB |
 | Worker scripts | yes | <1 MB |

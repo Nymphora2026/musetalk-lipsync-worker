@@ -24,7 +24,7 @@ Pinned MuseTalk weights repo: `TMElyralab/MuseTalk` revision `2bcb936e2fddb4d86d
 ## Unresolved
 
 1. **sd-vae-ft-mse**: current HF tag is MIT; historical OpenRAIL-M terms may still be argued to apply. Do not treat as cleared for production until counsel reviews.
-2. **S3FD**: license underspecified in the PyTorch ports MuseTalk's face pipeline historically uses. Do not treat as cleared.
+2. **S3FD**: license underspecified in the PyTorch ports MuseTalk's face pipeline historically uses. **PRODUCTION TODO:** do not bake `s3fd.pth` into the public image until counsel reviews. This private 15s test keeps the upstream first-use download from `adrianbulat.com`. Do not treat as cleared.
 3. **face-parse-bisent**: official MuseTalk Windows download switched to the ManyOtherFunctions HF mirror (WTFPL tag). Original parser is MIT; CelebAMask-HQ dataset terms are a separate review. Do not treat the mirror as the original author's distribution.
 
 A 15-second internal quality test can proceed with those two items flagged. A commercial launch cannot hide them.

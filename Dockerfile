@@ -7,8 +7,8 @@ ARG MUSETALK_REVISION=0a89dec45a0192b824e3cf4daf96c239440c5ed8
 
 FROM python:3.10-slim-bookworm AS schema
 WORKDIR /opt/worker
-COPY contract.py handler.py pins.json ./
-RUN python contract.py && python handler.py --validate-only
+COPY contract.py handler.py pins.json download_models.sh validate_layout.py Dockerfile ./
+RUN python contract.py && python handler.py --validate-only && python validate_layout.py
 CMD ["python", "handler.py", "--validate-only"]
 
 FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04 AS gpu

@@ -3,8 +3,10 @@
   "musetalk_revision": "0a89dec45a0192b824e3cf4daf96c239440c5ed8",
   "musetalk_version": "1.5",
   "python": "3.10",
-  "torch": "2.2.2",
+  "torch": "2.1.2",
+  "torchvision": "0.16.2",
   "cuda": "12.1",
+  "mmcv": "2.1.0",
   "ffmpeg": "6",
   "checkpoints": {
     "musetalk_v15": {
@@ -15,6 +17,7 @@
     "sd_vae_ft_mse": {
       "repo": "stabilityai/sd-vae-ft-mse",
       "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "dest": "sd-vae",
       "files": ["config.json", "diffusion_pytorch_model.bin"]
     },
     "whisper_tiny": {
@@ -44,6 +47,7 @@
     "bbox_shift": 0
   },
   "not_downloaded": [
-    "ByteDance/LatentSync latentsync_syncnet.pt — eval-only, not used by scripts/inference.py"
+    "ByteDance/LatentSync latentsync_syncnet.pt — eval-only, not used by scripts/inference.py",
+    "S3FD s3fd.pth — MuseTalk face_detection downloads https://www.adrianbulat.com/downloads/python-fan/s3fd-619a316812.pth at first use. Not baked. PRODUCTION TODO: license review before commercial use."
   ]
 }

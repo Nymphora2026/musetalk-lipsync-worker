@@ -10,7 +10,7 @@ import os
 import shutil
 from pathlib import Path
 
-from huggingface_hub import hf_hub_download, snapshot_download
+from huggingface_hub import hf_hub_download
 
 pins = json.loads(Path("/opt/worker/pins.json").read_text(encoding="utf-8"))
 root = Path(os.environ.get("MUSETALK_MODEL_DIR", "/models"))
@@ -26,11 +26,16 @@ def cached_file(repo: str, revision: str, name: str, dest: Path) -> None:
 ck = pins["checkpoints"]
 cached_file(ck["musetalk_v15"]["repo"], ck["musetalk_v15"]["revision"], "musetalkV15/unet.pth", root / "musetalkV15" / "unet.pth")
 cached_file(ck["musetalk_v15"]["repo"], ck["musetalk_v15"]["revision"], "musetalkV15/musetalk.json", root / "musetalkV15" / "musetalk.json")
-cached_file(ck["sd_vae_ft_mse"]["repo"], ck["sd_vae_ft_mse"]["revision"], "config.json", root / "sd-vae-ft-mse" / "config.json")
-cached_file(ck["sd_vae_ft_mse"]["repo"], ck["sd_vae_ft_mse"]["revision"], "diffusion_pytorch_model.bin", root / "sd-vae-ft-mse" / "diffusion_pytorch_model.bin")
-whisper = root / "whisper"
-if not (whisper / "config.json").is_file():
-    snapshot_download(repo_id=ck["whisper_tiny"]["repo"], revision=ck["whisper_tiny"]["revision"], local_dir=str(whisper))
+# Official inference loads models/sd-vae (vae_type="sd-vae"). VAE class default is sd-vae-ft-mse.
+cached_file(ck["sd_vae_ft_mse"]["repo"], ck["sd_vae_ft_mse"]["revision"], "config.json", root / "sd-vae" / "config.json")
+cached_file(ck["sd_vae_ft_mse"]["repo"], ck["sd_vae_ft_mse"]["revision"], "diffusion_pytorch_model.bin", root / "sd-vae" / "diffusion_pytorch_model.bin")
+alias = root / "sd-vae-ft-mse"
+if alias.exists() and not alias.is_symlink():
+    pass
+elif not alias.exists():
+    alias.symlink_to(root / "sd-vae")
+for name in ck["whisper_tiny"]["files"]:
+    cached_file(ck["whisper_tiny"]["repo"], ck["whisper_tiny"]["revision"], name, root / "whisper" / Path(name).name)
 cached_file(ck["dwpose"]["repo"], ck["dwpose"]["revision"], "dw-ll_ucoco_384.pth", root / "dwpose" / "dw-ll_ucoco_384.pth")
 cached_file(ck["face_parse_bisent"]["repo"], ck["face_parse_bisent"]["revision"], "79999_iter.pth", root / "face-parse-bisent" / "79999_iter.pth")
 cached_file(ck["face_parse_bisent"]["repo"], ck["face_parse_bisent"]["revision"], "resnet18-5c106cde.pth", root / "face-parse-bisent" / "resnet18-5c106cde.pth")
