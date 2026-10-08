@@ -48,8 +48,9 @@ RUN python -m pip install --no-cache-dir -r /opt/worker/requirements-gpu.txt \
 
 RUN git clone https://github.com/TMElyralab/MuseTalk.git /opt/MuseTalk \
     && git -C /opt/MuseTalk checkout ${MUSETALK_REVISION} \
-    && ln -sfn /models /opt/MuseTalk/models \
-    && python -m pip install --no-cache-dir -e /opt/MuseTalk --no-deps
+    && ln -sfn /models /opt/MuseTalk/models
+
+ENV PYTHONPATH="/opt/MuseTalk"
 
 COPY contract.py handler.py run_inference.py download_models.sh /opt/worker/
 RUN chmod +x /opt/worker/download_models.sh \
