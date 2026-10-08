@@ -41,7 +41,7 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          target: schema
+          target: gpu
           platforms: linux/amd64
           push: true
           tags: |
