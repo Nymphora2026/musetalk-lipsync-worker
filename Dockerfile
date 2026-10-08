@@ -42,6 +42,8 @@ RUN python -m pip install --no-cache-dir -r /opt/worker/requirements-gpu.txt \
     && mim install mmengine \
     && mim install "mmcv==2.1.0" \
     && mim install "mmdet>=3.1.0,<3.3.0" \
+    && python -m pip install --no-cache-dir "setuptools==68.2.2" wheel \
+    && python -m pip install --no-cache-dir --no-build-isolation "chumpy==0.70" \
     && mim install "mmpose>=1.1.0,<1.4.0"
 
 RUN git clone https://github.com/TMElyralab/MuseTalk.git /opt/MuseTalk \
