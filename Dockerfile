@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir \
-         torch==2.2.2 torchvision==0.17.2 \
+         torch==2.1.2 torchvision==0.16.2 \
          --index-url https://download.pytorch.org/whl/cu121
 
 WORKDIR /opt/worker
@@ -40,7 +40,7 @@ COPY requirements-gpu.txt pins.json /opt/worker/
 RUN python -m pip install --no-cache-dir -r /opt/worker/requirements-gpu.txt \
     && python -m pip install --no-cache-dir -U openmim \
     && mim install mmengine \
-    && mim install "mmcv>=2.0.1,<2.2.0" \
+    && mim install "mmcv==2.1.0" \
     && mim install "mmdet>=3.1.0,<3.3.0" \
     && mim install "mmpose>=1.1.0,<1.4.0"
 
