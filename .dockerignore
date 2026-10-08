@@ -1,0 +1,10 @@
+**/.git
+**/__pycache__
+**/*.pyc
+**/.venv
+**/results
+**/models
+**/*.pth
+**/*.bin
+**/*.safetensors
+test-manifest.json

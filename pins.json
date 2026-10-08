@@ -1,0 +1,49 @@
+{
+  "musetalk_repo": "https://github.com/TMElyralab/MuseTalk",
+  "musetalk_revision": "0a89dec45a0192b824e3cf4daf96c239440c5ed8",
+  "musetalk_version": "1.5",
+  "python": "3.10",
+  "torch": "2.2.2",
+  "cuda": "12.1",
+  "ffmpeg": "6",
+  "checkpoints": {
+    "musetalk_v15": {
+      "repo": "TMElyralab/MuseTalk",
+      "revision": "2bcb936e2fddb4d86db4c62fd45b387d0c061571",
+      "files": ["musetalkV15/unet.pth", "musetalkV15/musetalk.json"]
+    },
+    "sd_vae_ft_mse": {
+      "repo": "stabilityai/sd-vae-ft-mse",
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "files": ["config.json", "diffusion_pytorch_model.bin"]
+    },
+    "whisper_tiny": {
+      "repo": "openai/whisper-tiny",
+      "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "files": ["config.json", "pytorch_model.bin", "preprocessor_config.json"]
+    },
+    "dwpose": {
+      "repo": "yzd-v/DWPose",
+      "revision": "1a7144101628d69ee7a3768d1ee3a094070dc388",
+      "files": ["dw-ll_ucoco_384.pth"]
+    },
+    "face_parse_bisent": {
+      "repo": "ManyOtherFunctions/face-parse-bisent",
+      "revision": "0073b233a5a3c4b1377d4dbf49245017938a72b5",
+      "files": ["79999_iter.pth", "resnet18-5c106cde.pth"]
+    }
+  },
+  "inference": {
+    "version": "v15",
+    "use_float16": true,
+    "batch_size": 8,
+    "extra_margin": 10,
+    "parsing_mode": "jaw",
+    "audio_padding_length_left": 2,
+    "audio_padding_length_right": 2,
+    "bbox_shift": 0
+  },
+  "not_downloaded": [
+    "ByteDance/LatentSync latentsync_syncnet.pt — eval-only, not used by scripts/inference.py"
+  ]
+}

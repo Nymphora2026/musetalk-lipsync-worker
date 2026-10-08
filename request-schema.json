@@ -1,0 +1,36 @@
+{
+  "$id": "musetalk-gpu-request",
+  "type": "object",
+  "required": ["id", "source_video", "aligned_audio"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "identity": { "type": "string" },
+    "source_video": {
+      "type": "object",
+      "properties": {
+        "b64": { "type": "string" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "mime": { "const": "video/mp4" }
+      }
+    },
+    "aligned_audio": {
+      "type": "object",
+      "properties": {
+        "b64": { "type": "string" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "mime": { "const": "audio/wav" }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "version": { "const": "v15" },
+        "use_float16": { "type": "boolean" },
+        "batch_size": { "type": "integer" },
+        "extra_margin": { "type": "integer" },
+        "parsing_mode": { "const": "jaw" }
+      }
+    }
+  }
+}
